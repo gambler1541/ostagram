@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import CreateView
 
 from .models import Photo
@@ -17,4 +17,9 @@ class PhotoUploadView(CreateView):
     template_name = 'photo/upload.html'
 
     def form_valid(self, form):
-        pass
+        form.instance.author_id = self.request.user.id
+        if form.is_valid():
+            form.instance.save()
+            return redirect('/')
+        else:
+            return self.render_to_response({'form':form})
