@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DeleteView, UpdateView
 
 from .models import Photo
 
 def photo_list(request):
-    photo = Photo.objects.all()
+    photos = Photo.objects.all()
     context = {
-        'photo' : photo
+        'photos' : photos
     }
     return render(request, 'photo/list.html', context)
 
@@ -23,3 +23,16 @@ class PhotoUploadView(CreateView):
             return redirect('/')
         else:
             return self.render_to_response({'form':form})
+
+
+class PhotoDeleteView(DeleteView):
+    model = Photo
+    success_url = '/'
+    template_name = 'photo/delete.html'
+
+
+class PhotoUpdateView(UpdateView):
+    model = Photo
+    fields = ['photo', 'text']
+    template_name = 'photo/update.html'
+
