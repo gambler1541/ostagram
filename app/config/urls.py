@@ -22,7 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('photo.urls')),
     path('accounts/', include('accounts.urls')),
-
 ]
 
 # 이 구문은 debug=true일 경우에만 실행

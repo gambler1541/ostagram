@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}- Registation {% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 panel panel-default">
+        <div class="alert alert-info">
+            Please enter your account informations.
+        </div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class="btn btn-primary" value="Register">
+        </form>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+{% endblock %}
